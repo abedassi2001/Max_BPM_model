@@ -78,7 +78,18 @@ def clean_data(input_path: str, output_path: str) -> pd.DataFrame:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--input', default='gym_members_exercise_tracking.csv')
-    parser.add_argument('--output', default='gym_cleaned.csv')
+
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
+    parser.add_argument(
+        '--input',
+        default=str(BASE_DIR / 'gym_members_exercise_tracking.csv')
+    )
+
+    parser.add_argument(
+        '--output',
+        default=str(BASE_DIR / 'gym_cleaned.csv')
+    )
+
     args = parser.parse_args()
     clean_data(args.input, args.output)
